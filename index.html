@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Богдан</title>
+    <style>
+        /* Переливающийся фон */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial Black', sans-serif;
+            background: linear-gradient(135deg, #1a0a2e, #4a0e0e, #0f2027, #2c033d);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: white;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Верхняя строка */
+        .top-banner {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 12px 0;
+            border-bottom: 2px solid #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 16px;
+        }
+
+        header { padding: 50px 20px; }
+
+        h1 {
+            font-size: 6rem;
+            margin: 0;
+            background: linear-gradient(to bottom, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.4));
+        }
+
+        /* Галерея */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .card {
+            width: 320px;
+            border: 5px solid #fff;
+            border-radius: 25px;
+            overflow: hidden;
+            background: #000;
+            transition: 0.3s;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            border-color: #ffd700;
+        }
+
+        .card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .label {
+            padding: 15px;
+            background: #111;
+            font-size: 1.2rem;
+        }
+
+        /* Анимация космонавта */
+        .space-mode {
+            animation: spaceFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes spaceFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        .btn-shout {
+            background: #ff4500;
+            color: white;
+            border: none;
+            padding: 25px 60px;
+            font-size: 2rem;
+            font-weight: 900;
+            border-radius: 100px;
+            cursor: pointer;
+            margin: 40px 0;
+            box-shadow: 0 10px 0 #8b0000;
+            transition: 0.1s;
+        }
+
+        .btn-shout:active {
+            transform: translateY(5px);
+            box-shadow: 0 5px 0 #8b0000;
+        }
+
+        /* Оверлей КУ-КА-РЕ-КУ */
+        #kukareku-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 69, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            font-size: 12vw;
+            color: white;
+            font-weight: 900;
+            text-shadow: 10px 10px 0px #000;
+            pointer-events: none;
+        }
+
+        /* Тряска экрана */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-2px, -3px) rotate(-2deg); }
+            20% { transform: translate(-4px, 0px) rotate(2deg); }
+            30% { transform: translate(4px, 3px) rotate(0deg); }
+            40% { transform: translate(2px, -2px) rotate(2deg); }
+            50% { transform: translate(-2px, 3px) rotate(-2deg); }
+            100% { transform: translate(1px, 1px) rotate(0deg); }
+        }
+
+        .shaking {
+            animation: shake 0.2s infinite;
+        }
+    </style>
+</head>
+<body id="main-body">
+
+    <div class="top-banner">
+        <marquee scrollamount="12">БОГДАН • САМЫЙ ГЛАВНЫЙ ПЕТУХ • КУКАРЕКУ • ОСТОРОЖНО: ОПАСНО ДЛЯ УШЕЙ • БОГДАН</marquee>
+    </div>
+
+    <header>
+        <h1>БОГДАН</h1>
+        <p style="font-size: 1.4rem; opacity: 0.8;">Просто легенда в перьях</p>
+    </header>
+
+    <div class="gallery">
+        <div class="card">
+            <img src="e0dd76fd4bc710ad76228f1e2275ab5c.jpg" alt="Богдан">
+            <div class="label">ОБЫЧНЫЙ БОГДАН</div>
+        </div>
+
+        <div class="card space-mode">
+            <img src="orig.jpg" alt="Богдан в скафандре">
+            <div class="label">БОГДАН В КОСМОСЕ</div>
+        </div>
+    </div>
+
+    <button class="btn-shout" onclick="shout()">ВЫПУСТИТЬ КРИК</button>
+
+    <div id="kukareku-overlay">КУ-КА-РЕ-КУ!</div>
+
+    <script>
+        function shout() {
+            const body = document.getElementById('main-body');
+            const overlay = document.getElementById('kukareku-overlay');
+
+            // Показываем надпись и включаем тряску
+            overlay.style.display = 'flex';
+            body.classList.add('shaking');
+
+            // Выключаем через 1.5 секунды
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                body.classList.remove('shaking');
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
